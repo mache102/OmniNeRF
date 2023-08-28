@@ -347,6 +347,8 @@ def config_parser():
                         help='input data directory')
 
     # training options
+    parser.add_argument("--N_iters", type=int, default=200000,
+                        help='number of iterations to train for')
     parser.add_argument("--netdepth", type=int, default=8, 
                         help='layers in network')
     parser.add_argument("--netwidth", type=int, default=256, 
@@ -529,7 +531,7 @@ def train():
     # Prepare raybatch tensor if batching random rays
     N_rand = args.N_rand
     i_batch = 0
-    N_iters = 200000 + 1
+    N_iters = args.N_iters + 1
     start = start + 1
     print('Begin, iter: %d' % start)
     for i in trange(start, N_iters):
